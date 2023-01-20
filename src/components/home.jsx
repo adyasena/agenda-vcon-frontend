@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <div className="w-full h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url("../src/assets/home.jpg")`}}>
-      <div className="w-full h-screen bg-black bg-opacity-50">
+      <div className="w-full h-screen bg-black bg-opacity-60">
         <div className="flex flex-col gap-10 h-full container mx-auto items-center font-poppins text-white">
           <div className="flex flex-row justify-center items-center mt-32 h-24">
             <img src="../src/assets/logo_kominfo.png" alt="logo kominfo" className="h-full w-auto scale-95" />
@@ -26,7 +26,7 @@ const Home = () => {
             Kabupaten Purworejo
           </div>
           <div className="mt-10">
-            <button className="bg-blue-light text-blue-white font-normal py-2 px-6 rounded-full transform duration-300 ease hover:bg-white hover:text-blue-primary" onClick={scrollToBottom}>Lihat Agenda</button>
+            <button className="bg-blue-light text-white font-normal py-2 px-6 rounded-full transform duration-300 ease hover:bg-white hover:text-black" onClick={scrollToBottom}>Lihat Agenda</button>
             
           </div>
         </div>
