@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
           <button className={"text-base border-2 font-normal py-2 px-6 rounded-full transform duration-300 ease "
             + (scroll ? "bg-white text-blue-light border-white hover:bg-blue-light hover:text-white" : "text-white border-blue-light hover:bg-blue-light")}>
-            Login Admin
+            Hubungi Kami
           </button> 
       </div>
     </div>
