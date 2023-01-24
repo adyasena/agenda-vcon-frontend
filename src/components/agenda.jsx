@@ -9,7 +9,7 @@ const Agenda = () => {
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
 
   const [agenda, setAgenda] = useState([]);
-  useEffect(() => {
+  useMemo(() => {
     if (!agendaData?.data?.agenda) return;
     setAgenda(agendaData.data.agenda);
   }, [agendaData]);
@@ -66,7 +66,7 @@ const Agenda = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="container mx-auto w-full h-screen pt-24 px-12 flex flex-col items-center">
+      <div className="container mx-auto w-full h-screen pt-20 px-12 flex flex-col items-center">
         <div className="bg-white py-5 px-5 rounded-xl w-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
