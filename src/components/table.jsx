@@ -1,50 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { createFetcher } from "../helpers/fetcher";
-import { useFetch } from "../helpers/useFetch";
+import React from "react";
+import { useTable } from "react-table";
 
-function JsonDataDisplay(){
+export default function Table({ columns, data }) {
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow 
+  } = useTable({
+    columns,
+    data
+  });
 
-  const {error, isLoading, data: agendaData} = useFetch("/agenda");
-
-  const [agenda, setAgenda] = useState([]);
-  useEffect(() => {
-    if (!agendaData?.data?.agenda) return;
-    setAgenda(agendaData.data.agenda.reverse());
-  }, [agendaData]);
-
-  const DisplayData=agenda?.map(
-    (agenda)=>{
-      return(
-        <tr key={agenda._id}>
-          <td className="border">{agenda._id}</td>
-          <td className="border">{agenda.host}</td>
-          <td className="border">{agenda.peserta}</td>
-          <td className="border">{agenda.topik}</td>
-        </tr>
-      )
-    }
-  )
-
-  return(
-    <div>
-    {error && <div>{error}</div>}
-    {isLoading && <div>Loading...</div>}
-
-      <table className="table table-auto border w-full">
-        <thead className="border">
-          <tr>
-            <th className="border">id</th>
-            <th className="border">host</th>
-            <th className="border">peserta</th>
-            <th className="border">topik</th>
+  return (
+    <table {...getTableProps()} className="w-full">
+      <thead>
+        {headerGroups.map(headerGroup => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map(column => (
+              <th {...column.getHeaderProps({
+                style: { width: column.width },
+              })} className="border">
+                {column.render('Header')}
+              </th>
+            ))}
           </tr>
-        </thead>
-        <tbody>
-          {DisplayData}
-        </tbody>
-      </table>
-    </div>
-  )
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map(row => {
+          prepareRow(row)
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map(cell => {
+                return (
+                  <td {...cell.getCellProps()} className="border text-center">
+                    {cell.render('Cell')}
+                  </td>
+                )
+              })}
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  );
 }
-
-export default JsonDataDisplay;
