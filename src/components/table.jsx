@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { createFetcher } from "../helpers/fetcher";
+import { useFetch } from "../helpers/useFetch";
 
 function JsonDataDisplay(){
-  const [data, setData] = useState();
-  const useFetch = async () => {
-    const fetcher = createFetcher();
-    const response = await fetcher.get("/agenda");
 
-    if (response) {
-      setData(response.data.data.agenda);
-      console.log(JSON.stringify(data));
-    }
-  }
+  const {error, isLoading, data: agendaData} = useFetch("/agenda");
+
+  const [agenda, setAgenda] = useState([]);
   useEffect(() => {
-    useFetch();
-  }, []);
-  const DisplayData=data?.map(
+    if (!agendaData?.data?.agenda) return;
+    setAgenda(agendaData.data.agenda.reverse());
+  }, [agendaData]);
+
+  const DisplayData=agenda?.map(
     (agenda)=>{
       return(
-        <tr>
+        <tr key={agenda._id}>
           <td className="border">{agenda._id}</td>
           <td className="border">{agenda.host}</td>
           <td className="border">{agenda.peserta}</td>
@@ -30,6 +27,9 @@ function JsonDataDisplay(){
 
   return(
     <div>
+    {error && <div>{error}</div>}
+    {isLoading && <div>Loading...</div>}
+
       <table className="table table-auto border w-full">
         <thead className="border">
           <tr>

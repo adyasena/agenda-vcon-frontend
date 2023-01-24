@@ -2,23 +2,9 @@ import React, { useEffect, useState, useMemo } from "react";
 import { createFetcher } from "../helpers/fetcher";
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import Table from "./table";
+import { useFetch } from "../helpers/useFetch";
 
 const Agenda = () => {
-  const [data, setData] = useState();
-  const useFetch = async () => {
-    const fetcher = createFetcher();
-    const response = await fetcher.get("/agenda");
-
-    if (response) {
-      setData(response.data.data.agenda);
-      console.log(JSON.stringify(data));
-    }
-  }
-  useEffect(() => {
-    useFetch();
-  }, []);
-  
-  
 
   return (
     <div className="w-full h-screen bg-white">
