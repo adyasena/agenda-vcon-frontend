@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { createFetcher } from "../helpers/fetcher";
+import { useGlobalFilter, useSortBy, useTable } from "react-table";
+import Table from "./table";
 
 const Agenda = () => {
+  const [data, setData] = useState();
+  const useFetch = async () => {
+    const fetcher = createFetcher();
+    const response = await fetcher.get("/agenda");
+
+    if (response) {
+      setData(response.data.data.agenda);
+      console.log(JSON.stringify(data));
+    }
+  }
+  useEffect(() => {
+    useFetch();
+  }, []);
+  
+  
+
   return (
     <div className="w-full h-screen bg-white">
-      <div className="pt-20">
+      <div className="pt-20 flex flex-col items-center gap-10">
         <div className="text-black text-center text-2xl font-poppins font-semibold">
           Agenda Hari Ini
         </div>
-        <div className="pt-10">
-          <table className="table">
-            <thead>
-              <tr>
-                
-              </tr>
-            </thead>
-
-          </table>
+        <div className="container mx-auto px-12 rounded-md items-center flex flex-col w-full font:roboto">
+          {/* {JSON.stringify(data)} */}
+          <Table />
         </div>
       </div>
     </div>
