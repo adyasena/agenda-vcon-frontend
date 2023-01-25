@@ -3,7 +3,6 @@ import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import { useFetch } from "../helpers/useFetch";
 import Table from "./table";
 import Moment from "moment/moment";
-import BgHome from "../assets/home.jpg";
 
 const Agenda = () => {
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
@@ -66,7 +65,7 @@ const Agenda = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="container mx-auto w-full h-screen pt-20 px-12 flex flex-col items-center">
+      <div className="container mx-auto w-full h-screen pt-20 lg:px-12 flex flex-col items-center">
         <div className="bg-white py-5 px-5 rounded-xl w-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
