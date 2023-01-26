@@ -21,7 +21,7 @@ const Admin = () => {
           "Agustus", "September", "Oktober", "November", "Desember"
       ]
     });
-  }
+  };
 
   const columns = useMemo(
     () => [

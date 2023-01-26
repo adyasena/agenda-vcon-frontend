@@ -20,7 +20,7 @@ const Agenda = () => {
           "Agustus", "September", "Oktober", "November", "Desember"
       ]
     });
-  }
+  };
   
   const columns = useMemo(
     () => [
