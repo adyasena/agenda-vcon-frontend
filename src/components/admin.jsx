@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useGlobalFilter, useSortBy, useTable } from "react-table";
+import { useFilters, useGlobalFilter, useSortBy, useTable } from "react-table";
 import { useFetch } from "../helpers/useFetch";
 import Table from "./table";
 import Moment from "moment/moment";
+import FilterForm from "./filter";
 
 const Admin = () => {
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
@@ -21,7 +22,7 @@ const Admin = () => {
       ]
     });
   }
-  
+
   const columns = useMemo(
     () => [
       {
@@ -39,41 +40,49 @@ const Admin = () => {
             .format("DD MMMM YYYY")
         },
         width: 160,
+        Filter: FilterForm,
       },
       {
         Header: "Waktu",
         accessor: "waktu",
-        width: 80,
+        width: 40,
+        Filter: FilterForm,
       },
       {
         Header: "Host",
         accessor: "host",
         width: 200,
+        Filter: FilterForm,
       },
       {
         Header: "Peserta",
         accessor: "peserta",
         width: 200,
+        Filter: FilterForm,
       },
       {
         Header: "Topik",
         accessor: "topik",
         width: 400,
+        Filter: FilterForm,
       },
       {
         Header: "Tempat",
         accessor: "tempat",
         width: 200,
+        Filter: FilterForm,
       },
       {
         Header: "Keterangan",
         accessor: "keterangan",
         width: 200,
+        Filter: FilterForm,
       },
       {
         Header: "Surat Pinjam",
         accessor: "suratPinjam",
         width: 100,
+        Filter: FilterForm,
       },
     ], []
   );
