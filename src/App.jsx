@@ -8,8 +8,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/vcon-admin" element={<Loginpage />} />
-        <Route path="/vcon-login" element={<Adminpage />} />
+        <Route path="/vcon-login" element={<Loginpage />} />
+        <Route path="/vcon-admin" element={<Adminpage />} />
       </Routes>
     </>
   );
