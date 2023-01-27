@@ -26,9 +26,10 @@ const Admin = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "No",
-        accessor: "a",
-        Cell: (prop) => prop.row.index+1,
+        Header: 'No',
+        Cell: ({ row, flatRows }) => {
+          return flatRows.indexOf(row) + 1;
+        },
         width: 40,
       },
       {
@@ -40,49 +41,41 @@ const Admin = () => {
             .format("DD MMMM YYYY")
         },
         width: 130,
-        Filter: FilterForm,
       },
       {
         Header: "Waktu",
         accessor: "waktu",
         width: 60,
-        Filter: FilterForm,
       },
       {
         Header: "Host",
         accessor: "host",
         width: 150,
-        Filter: FilterForm,
       },
       {
         Header: "Peserta",
         accessor: "peserta",
         width: 150,
-        Filter: FilterForm,
       },
       {
         Header: "Topik",
         accessor: "topik",
         width: 200,
-        Filter: FilterForm,
       },
       {
         Header: "Tempat",
         accessor: "tempat",
         width: 160,
-        Filter: FilterForm,
       },
       {
         Header: "Keterangan",
         accessor: "keterangan",
         width: 120,
-        Filter: FilterForm,
       },
       {
         Header: "Surat Pinjam",
         accessor: "suratPinjam",
         width: 60,
-        Filter: FilterForm,
       },
     ], []
   );

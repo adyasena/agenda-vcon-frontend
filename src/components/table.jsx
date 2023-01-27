@@ -42,7 +42,7 @@ export default function Table({ columns, data }) {
   };
 
   const { globalFilter } = state;
-  
+
   return (
     <div className="text-black">
       <div className="flex flex-row justify-start gap-2">
@@ -66,16 +66,15 @@ export default function Table({ columns, data }) {
           <option value="2023">2023</option>
         </select>
       </div>
-      <div>
-      </div>
       <table {...getTableProps()} className="w-full table-fixed">
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()} className="bg-blue-light bg-opacity-20">
+              
               {headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps({
                   style: { width: column.width },
-                })} className="py-1 border">
+                  })} className="py-1">
                   {column.render('Header')}
                 </th>
               ))}
