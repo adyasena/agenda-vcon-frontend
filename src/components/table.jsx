@@ -24,13 +24,13 @@ export default function Table({ columns, data }) {
     .format("DD MMMM YYYY");
     console.log(value)
     setFilter("Tanggal", value);
-    setFilterTahun(value);
+    setFilterInput(value);
   };
   const handleFilterTahun = e => {
     const value = e.target.value;
     console.log(e.target.value)
     setFilter("Tanggal", value);
-    setFilterInput(value);
+    setFilterTahun(value);
   };
 
   const handleDisplayTanggal = e => {
@@ -42,12 +42,6 @@ export default function Table({ columns, data }) {
   };
 
   const { globalFilter } = state;
-
-  if (rows.length > 0) {
-
-  } else {
-
-  };
   
   return (
     <div className="text-black">
@@ -63,10 +57,10 @@ export default function Table({ columns, data }) {
           type="date"
           placeholder="Cari" 
           className="py-2 px-3 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
-          value={displayTanggal || null}
+          value={displayTanggal}
           onChange={handleDisplayTanggal}
         />
-        <select defaultValue={2023} onChange={handleFilterTahun} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+        <select value={filterTahun} onChange={handleFilterTahun} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
           <option value="">Semua Tahun</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
@@ -81,9 +75,8 @@ export default function Table({ columns, data }) {
               {headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps({
                   style: { width: column.width },
-                })} className="py-1">
+                })} className="py-1 border">
                   {column.render('Header')}
-                  
                 </th>
               ))}
             </tr>
@@ -96,7 +89,7 @@ export default function Table({ columns, data }) {
               <tr {...row.getRowProps()} className="even:bg-blue-light even:bg-opacity-10">
                 {row.cells.map(cell => {
                   return (
-                    <td {...cell.getCellProps()} className="text-center py-1">
+                    <td {...cell.getCellProps()} className="text-center py-1 break-words">
                       {cell.render('Cell')}
                     </td>
                   )
@@ -106,6 +99,11 @@ export default function Table({ columns, data }) {
           })}
         </tbody>
       </table>
+      {rows.length == 0 &&
+        <div className="text-center py-10">
+          Tidak ada agenda.
+        </div>
+      }
     </div>
   );
 }

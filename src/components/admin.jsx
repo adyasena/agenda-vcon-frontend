@@ -39,13 +39,13 @@ const Admin = () => {
             .local('id')
             .format("DD MMMM YYYY")
         },
-        width: 120,
+        width: 130,
         Filter: FilterForm,
       },
       {
         Header: "Waktu",
         accessor: "waktu",
-        width: 80,
+        width: 60,
         Filter: FilterForm,
       },
       {
