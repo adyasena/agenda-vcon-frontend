@@ -60,7 +60,7 @@ export default function Table({ columns, data }) {
           value={displayTanggal}
           onChange={handleDisplayTanggal}
         />
-        <select value={filterTahun} onChange={handleFilterTahun} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+        <select defaultValue={2023} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
           <option value="">Semua Tahun</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
