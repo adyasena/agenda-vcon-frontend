@@ -39,49 +39,49 @@ const Admin = () => {
             .local('id')
             .format("DD MMMM YYYY")
         },
-        width: 160,
+        width: 120,
         Filter: FilterForm,
       },
       {
         Header: "Waktu",
         accessor: "waktu",
-        width: 40,
+        width: 80,
         Filter: FilterForm,
       },
       {
         Header: "Host",
         accessor: "host",
-        width: 200,
+        width: 150,
         Filter: FilterForm,
       },
       {
         Header: "Peserta",
         accessor: "peserta",
-        width: 200,
+        width: 150,
         Filter: FilterForm,
       },
       {
         Header: "Topik",
         accessor: "topik",
-        width: 400,
+        width: 200,
         Filter: FilterForm,
       },
       {
         Header: "Tempat",
         accessor: "tempat",
-        width: 200,
+        width: 160,
         Filter: FilterForm,
       },
       {
         Header: "Keterangan",
         accessor: "keterangan",
-        width: 200,
+        width: 120,
         Filter: FilterForm,
       },
       {
         Header: "Surat Pinjam",
         accessor: "suratPinjam",
-        width: 100,
+        width: 60,
         Filter: FilterForm,
       },
     ], []

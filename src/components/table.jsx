@@ -66,15 +66,15 @@ export default function Table({ columns, data }) {
           value={displayTanggal || null}
           onChange={handleDisplayTanggal}
         />
-        <select onChange={handleFilterTahun} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+        <select defaultValue={2023} onChange={handleFilterTahun} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
           <option value="">Semua Tahun</option>
           <option value="2022">2022</option>
-          <option selected value="2023">2023</option>
+          <option value="2023">2023</option>
         </select>
       </div>
       <div>
       </div>
-      <table {...getTableProps()} className="w-full">
+      <table {...getTableProps()} className="w-full table-fixed">
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()} className="bg-blue-light bg-opacity-20">
