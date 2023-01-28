@@ -25,9 +25,10 @@ const Agenda = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "No",
-        accessor: "a",
-        Cell: (prop) => prop.row.index+1,
+        Header: 'No',
+        Cell: ({ row, flatRows }) => {
+          return flatRows.indexOf(row) + 1;
+        },
         width: 40,
       },
       {
@@ -65,13 +66,19 @@ const Agenda = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="container mx-auto w-full h-screen pt-20 lg:px-12 flex flex-col items-center">
-        <div className="bg-white py-5 px-5 rounded-xl w-full">
+      <div className="container mx-auto w-full h-screen py-20 lg:px-12 flex flex-col items-center">
+        <div className="bg-white py-5 px-5 rounded-xl w-full h-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
           </div>
           <div className="container mx-auto pt-5 rounded-md items-center flex flex-col w-full font:roboto ">
-            <Table columns={columns} data={agenda} />
+            {isLoading ? (
+              <div className="w-full py-10 text-center text-lg">
+                Memuat agenda...
+              </div>
+            ) : (
+              <Table columns={columns} data={agenda} />
+            )}
           </div>
         </div>
       </div>

@@ -88,14 +88,13 @@ const Admin = () => {
             Agenda VCON
           </div>
           <div className="container mx-auto text-sm pt-5 rounded-md items-center flex flex-col w-full font:roboto ">
-            {isLoading &&
+            {isLoading ? (
               <div className="w-full py-10 text-center text-lg">
                 Memuat agenda...
               </div>
-            }
-            {!isLoading &&
+            ) : (
               <Table columns={columns} data={agenda} />
-            }
+            )}
           </div>
         </div>
       </div>
