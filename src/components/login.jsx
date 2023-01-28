@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div className="w-full h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${BgHome})`}}>
       <div className="w-full h-screen bg-black bg-opacity-60 flex flex-col justify-center">
-        <div className="container m-auto px-12 rounded-xl bg-white flex flex-col gap-5 items-center w-1/3 h-auto py-12 justify-center font-roboto">
+        <div className="container m-auto rounded-xl bg-white flex flex-col gap-5 items-center w-1/3 h-auto p-12 justify-center font-roboto">
           <div className="flex flex-col justify-start gap-1 w-full">
             <p>Username</p>
             <input type="text" placeholder="Enter username" className="py-2 px-5 rounded-full border border-black bg-white focus:outline-blue-light" />
