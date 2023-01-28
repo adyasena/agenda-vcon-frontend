@@ -24,8 +24,8 @@ const Navbar = () => {
           <img src={LogoKominfo} alt="logo kominfo" className={"m-2 transform duration-300 ease " + (scroll ? "w-8" : "w-0 mr-[-4px]")}/>
           <p className="transform">Agenda VCON</p> 
         </a>
-          <button className={"text-base border-2 font-normal py-2 lg:px-6 px-4 rounded-full transform duration-300 ease "
-            + (scroll ? "bg-white text-blue-light border-white hover:bg-blue-light hover:text-white" : "text-white border-blue-light hover:bg-blue-light")}>
+          <button className={"text-base border-2 font-normal py-2 lg:px-6 px-4 rounded-md transform duration-300 ease "
+            + (scroll ? "bg-white text-blue-light border-white hover:bg-opacity-0 hover:text-white" : "text-white border-blue-light hover:bg-blue-light")}>
             Hubungi Kami
           </button> 
       </div>

@@ -26,7 +26,7 @@ const Home = () => {
             Kabupaten Purworejo
           </div>
           <div className="lg:mt-10">
-            <button className="bg-blue-light text-white font-normal py-2 px-6 rounded-full transform duration-300 ease hover:bg-white hover:text-black" onClick={scrollToBottom}>
+            <button className="bg-blue-light text-white font-normal py-2 px-6 rounded-md transform duration-300 ease hover:bg-white hover:text-black" onClick={scrollToBottom}>
               Lihat Agenda
             </button>
           </div>
