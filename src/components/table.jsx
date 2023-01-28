@@ -22,15 +22,15 @@ export default function Table({ columns, data }) {
   const { globalFilter } = state;
 
   const [showModal, setShowModal] = useState(false);
-  
+
   const handleOnClose = () => {
     setShowModal(false);
   };
 
   return (
     <div className="text-black">
-      <div className="flex flex-row justify-between gap-2 align-center">
-        <div className="flex flex-row justify-start gap-2 align-center">
+      <div className="flex flex-row font-poppins justify-between gap-2 align-center">
+        <div className="flex flex-row justify-start gap-3 align-center">
           <input
             type="text"
             placeholder="Cari" 
@@ -44,7 +44,7 @@ export default function Table({ columns, data }) {
             <option value="2023">2023</option>
           </select>
         </div>
-        <button className="text-base py-2 px-4 mb-3 rounded-md hover:bg-blue-primary bg-blue-light text-white"
+        <button className="text-base py-2 px-4 mb-3 rounded-md hover:bg-blue-primary bg-blue-light text-white ease transition-all duration-300"
           onClick={() => setShowModal(true)}>
             Tambah Agenda
         </button> 
