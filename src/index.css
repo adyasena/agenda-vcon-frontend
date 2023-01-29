@@ -13,4 +13,44 @@
     z-index: 1;
     transition: .4s ease;
   }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 6rem;
+    height: 2.1rem;
+  }
+  .switch input {
+    display: none;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #151515;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+  input:checked + .slider {
+    background-color: #0093DD;
+  }
+  input:focus + .slider {
+    box-shadow: 0 0 1px #0093DD;
+  }
+  .slider:after {
+    content: 'Tidak ada';
+    width: 6rem;
+    height: 100%;
+    color: #f3f3f3;
+    position: absolute;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    font-size: 16px;
+  }
+  input:checked + .slider:after {
+    content: 'Ada';
+  }
 }
