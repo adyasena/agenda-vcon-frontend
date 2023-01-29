@@ -21,7 +21,7 @@ const Input = ({ visible, onClose }) => {
                 </div>
                 <div className="flex flex-col justify-start gap-1 w-1/2">
                   <label className="text-sm">Waktu</label>
-                  <input type="text" className="py-1 px-2 rounded-md border-black border bg-white w-full focus:outline-blue-light" />
+                  <input type="time" className="p-[0.2rem] rounded-md border-black border bg-white w-full focus:outline-blue-light" />
                 </div>
                 <div className="flex flex-col justify-start gap-1 w-1/6">
                   <label className="text-sm">Surat Pinjam</label>
