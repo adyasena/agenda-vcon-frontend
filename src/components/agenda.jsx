@@ -4,8 +4,10 @@ import Table from "./table";
 import Loading from "./loading";
 import { useFetch } from "../helpers/useFetch";
 
-
 const Agenda = () => {
+  let currentDate = new Date().toLocaleDateString();
+  currentDate = Moment(currentDate).format("DD MMMM YYYY");
+  console.log(currentDate)
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
 
   const [agenda, setAgenda] = useState([]);
@@ -26,7 +28,7 @@ const Agenda = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'No',
+        Header: "No",
         Cell: ({ row, flatRows }) => {
           return flatRows.indexOf(row) + 1;
         },
@@ -34,11 +36,10 @@ const Agenda = () => {
       },
       {
         Header: "Tanggal",
-        accessor: agenda => {
+        accessor: "tanggal",
+        Cell: ({value}) => {
           formatTanggal();
-          return Moment(agenda.tanggal)
-            .local('id')
-            .format("DD MMMM YYYY")
+          return Moment(value).format("DD MMMM YYYY");
         },
         width: 160,
       },
@@ -67,12 +68,12 @@ const Agenda = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="container mx-auto w-full h-screen py-20 lg:px-12 flex flex-col items-center">
+      <div className="container mx-auto w-full h-screen pt-20 pb-6 lg:px-12 flex flex-col items-center">
         <div className="bg-white py-5 px-5 rounded-xl w-full h-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
           </div>
-          <div className="container mx-auto pt-5 rounded-md items-center flex flex-col w-full font:roboto ">
+          <div className="container mx-auto pt-2 rounded-md items-center flex flex-col w-full font:roboto ">
             {isLoading ? (
               <div className="w-full py-10 flex justify-center">
                 <Loading/>
