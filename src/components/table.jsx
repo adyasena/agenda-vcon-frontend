@@ -12,11 +12,23 @@ export default function Table({ columns, data }) {
     setGlobalFilter,
     setFilter,
     prepareRow 
-  } = useTable({ columns, data }, useFilters, useGlobalFilter, useSortBy);
+  } = useTable({ columns, data,
+    initialState: {
+      sortBy: [
+        {
+          id: "tanggal",
+          desc: false
+        },
+        {
+          id: "waktu",
+          desc: false
+        }
+      ]
+    } }, useFilters, useGlobalFilter, useSortBy);
   
   const handleFilterTahun = e => {
     const value = e.target.value;
-    setFilter("Tanggal", value);
+    setFilter("tanggal", value);
   };
 
   const { globalFilter } = state;
@@ -26,7 +38,7 @@ export default function Table({ columns, data }) {
   const handleOnClose = () => {
     setShowModal(false);
   };
-
+  
   return (
     <div className="text-black">
       <div className="flex flex-row font-poppins justify-between gap-2 align-center">
@@ -34,17 +46,17 @@ export default function Table({ columns, data }) {
           <input
             type="text"
             placeholder="Cari" 
-            className="py-2 px-3 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
+            className="py-1 px-2 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
             value={globalFilter || ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
-          <select defaultValue={2023} onChange={handleFilterTahun} className="px-3 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+          <select defaultValue={2023} onChange={handleFilterTahun} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
             <option value="">Semua Tahun</option>
             <option value="2022">2022</option>
             <option value="2023">2023</option>
           </select>
         </div>
-        <button className="text-base py-2 px-4 mb-3 rounded-md hover:bg-blue-primary bg-blue-light text-white ease transition-all duration-300"
+        <button className="text-base py-1 px-3 mb-3 rounded-md hover:bg-blue-primary bg-blue-light text-white ease transition-all duration-300"
           onClick={() => setShowModal(true)}>
             Tambah Agenda
         </button> 
