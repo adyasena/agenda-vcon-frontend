@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { useGlobalFilter, useSortBy, useTable } from "react-table";
-import { useFetch } from "../helpers/useFetch";
-import Table from "./table";
+import React, { useState, useMemo } from "react";
 import Moment from "moment/moment";
+import Table from "./table";
+import Loading from "./loading";
+import { useFetch } from "../helpers/useFetch";
+
 
 const Agenda = () => {
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
@@ -73,8 +74,8 @@ const Agenda = () => {
           </div>
           <div className="container mx-auto pt-5 rounded-md items-center flex flex-col w-full font:roboto ">
             {isLoading ? (
-              <div className="w-full py-10 text-center text-lg">
-                Memuat agenda...
+              <div className="w-full py-10 flex justify-center">
+                <Loading/>
               </div>
             ) : (
               <Table columns={columns} data={agenda} />
