@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTable, useFilters, useGlobalFilter } from "react-table";
+import { useTable, useFilters, useGlobalFilter, useSortBy } from "react-table";
 import Input from "./input";
 
 export default function Table({ columns, data }) {
@@ -12,7 +12,7 @@ export default function Table({ columns, data }) {
     setGlobalFilter,
     setFilter,
     prepareRow 
-  } = useTable({ columns, data }, useFilters, useGlobalFilter);
+  } = useTable({ columns, data }, useFilters, useGlobalFilter, useSortBy);
   
   const handleFilterTahun = e => {
     const value = e.target.value;
@@ -55,10 +55,16 @@ export default function Table({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()} className="bg-blue-light bg-opacity-20">
               
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps({
-                  style: { width: column.width },
-                  })} className="py-1">
-                  {column.render('Header')}
+                <th {...column.getHeaderProps(column.getSortByToggleProps() )}
+                  style={{width: column.width}}
+                  className={"cursor-pointer py-1 " +
+                    (column.isSorted
+                      ? column.isSortedDesc
+                        ? "sort-desc"
+                        : "sort-asc"
+                      : "")
+                  }>
+                    {column.render('Header')}
                 </th>
               ))}
             </tr>
