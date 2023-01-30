@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useFilters, useGlobalFilter, useSortBy, useTable } from "react-table";
 import { useFetch } from "../helpers/useFetch";
 import Table from "./table";
 import Moment from "moment/moment";
-import FilterForm from "./filter";
+import YesCircle from "../assets/yesCircle.svg";
+import NoCircle from "../assets/noCircle.svg";
 
 const Admin = () => {
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
@@ -74,7 +74,10 @@ const Admin = () => {
       },
       {
         Header: "Surat Pinjam",
-        accessor: "suratPinjam",
+        accessor: agenda => {
+          return ((agenda.suratPinjam ? <img src={YesCircle} alt="Ada" className="w-5 items-center inline" /> 
+            : <img src={NoCircle} alt="Tidak Ada" className="w-5 items-center inline" />));
+        },
         width: 60,
       },
     ], []
