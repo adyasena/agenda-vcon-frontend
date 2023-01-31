@@ -5,9 +5,10 @@ import Table from "./table";
 import { useFetch } from "../helpers/useFetch";
 import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
-
+import { useLogin } from "../utils/hooks/useLogin";
 
 const Admin = () => {
+  useLogin();
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
   
   const [agenda, setAgenda] = useState([]);
@@ -81,6 +82,18 @@ const Admin = () => {
         },
         width: 60,
       },
+      {
+        Header: "Action",
+        Cell: () => {
+          return (
+            <div className="flex justify-center gap-2">
+              <button className="rounded-full bg-blue-light">e</button>
+              <button className="rounded-full bg-blue-primary">h</button>
+            </div>
+          )
+        },
+        width: 60,
+      }
     ], []
   );
 
