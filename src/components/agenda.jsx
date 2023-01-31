@@ -1,13 +1,11 @@
 import React, { useState, useMemo } from "react";
-import Moment from "moment/moment";
-import Table from "./table";
+import TableAgenda from "./tableAgenda";
 import Loading from "./loading";
 import { useFetch } from "../helpers/useFetch";
+import Moment from "moment/moment";
 
 const Agenda = () => {
-  let currentDate = new Date().toLocaleDateString();
-  currentDate = Moment(currentDate).format("DD MMMM YYYY");
-  console.log(currentDate)
+  
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
 
   const [agenda, setAgenda] = useState([]);
@@ -39,7 +37,10 @@ const Agenda = () => {
         accessor: "tanggal",
         Cell: ({value}) => {
           formatTanggal();
-          return Moment(value).format("DD MMMM YYYY");
+          let currentDate = new Date().toLocaleDateString();
+          let a = Moment(value).format("l");
+          let rowTanggal = Moment(value).format("DD MMMM YYYY");
+          return rowTanggal;
         },
         width: 130,
       },
@@ -68,7 +69,7 @@ const Agenda = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="container mx-auto w-full h-screen pt-20 pb-6 lg:px-12 flex flex-col items-center">
+      <div className="container mx-auto min-h-screen w-full pt-20 pb-6 lg:px-12 flex flex-col items-center">
         <div className="bg-white py-5 px-5 rounded-xl w-full h-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
@@ -79,7 +80,7 @@ const Agenda = () => {
                 <Loading/>
               </div>
             ) : (
-              <Table columns={columns} data={agenda} />
+              <TableAgenda columns={columns} data={agenda} />
             )}
           </div>
         </div>

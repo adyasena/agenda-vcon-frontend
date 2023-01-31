@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Moment from "moment/moment";
 import Loading from "./loading";
-import Table from "./table";
+import Table from "./tableAdmin";
 import { useFetch } from "../helpers/useFetch";
 import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
@@ -99,7 +99,7 @@ const Admin = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="w-full h-[200vh] pt-20 pb-6 lg:px-12 items-center">
+      <div className="w-full min-h-screen pt-20 pb-6 lg:px-12 items-center">
         <div className="bg-white py-5 px-5 rounded-xl flex flex-col items-center h-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda VCON
