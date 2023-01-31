@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BgHome from "../assets/home.jpg";
-import UserContext from "../contexts/userContext";
+import UserContext from "../helpers/userContext";
 import { fetcher } from "../helpers/fetcher";
 import { useContext } from "react";
 import { useNavigate } from "react-router";

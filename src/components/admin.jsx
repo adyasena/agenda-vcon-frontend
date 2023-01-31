@@ -5,7 +5,7 @@ import Table from "./table";
 import { useFetch } from "../helpers/useFetch";
 import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
-import { useLogin } from "../utils/hooks/useLogin";
+import { useLogin } from "../helpers/useLogin";
 
 const Admin = () => {
   useLogin();
