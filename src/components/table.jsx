@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTable, useFilters, useGlobalFilter, useSortBy } from "react-table";
+import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from "react-table";
 import Input from "./input";
 
 export default function Table({ columns, data }) {
@@ -7,11 +7,18 @@ export default function Table({ columns, data }) {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     state,
     setGlobalFilter,
     setFilter,
-    prepareRow 
+    prepareRow,
+    pageOptions,
+    gotoPage,
+    previousPage,
+    nextPage,
+    canPreviousPage,
+    canNextPage,
+    state: { pageIndex, pageSize },
   } = useTable({ columns, data,
     initialState: {
       sortBy: [
@@ -23,8 +30,9 @@ export default function Table({ columns, data }) {
           id: "waktu",
           desc: false
         }
-      ]
-    } }, useFilters, useGlobalFilter, useSortBy);
+      ],
+      pageSize: 5,
+    } }, useFilters, useGlobalFilter, useSortBy, usePagination);
   
   const handleFilterTahun = e => {
     const value = e.target.value;
@@ -61,50 +69,84 @@ export default function Table({ columns, data }) {
             Tambah Agenda
         </button> 
       </div>
-      <table {...getTableProps()} className="w-full table-fixed">
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()} className="bg-blue-light bg-opacity-20">
-              
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps() )}
-                  style={{width: column.width}}
-                  className={"cursor-pointer py-1 " +
-                    (column.isSorted
-                      ? column.isSortedDesc
-                        ? "sort-desc"
-                        : "sort-asc"
-                      : "")
-                  }>
-                    {column.render('Header')}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()} className="even:bg-blue-light even:bg-opacity-10">
-                {row.cells.map(cell => {
-                  return (
-                    <td {...cell.getCellProps()} className="text-center py-1 break-words">
-                      {cell.render('Cell')}
-                    </td>
-                  )
-                })}
+      <div className="">
+        <table {...getTableProps()} className="w-full table-fixed h-96">
+          <thead>
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()} className="bg-blue-light bg-opacity-20">
+                
+                {headerGroup.headers.map(column => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps() )}
+                    style={{width: column.width}}
+                    className={"cursor-pointer py-1 " +
+                      (column.isSorted
+                        ? column.isSortedDesc
+                          ? "sort-desc"
+                          : "sort-asc"
+                        : "")
+                    }>
+                      {column.render('Header')}
+                  </th>
+                ))}
               </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      {rows.length == 0 &&
-        <div className="text-center py-10">
-          Tidak ada agenda.
-        </div>
-      }
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map(row => {
+              prepareRow(row)
+              return (
+                <tr {...row.getRowProps()} className="even:bg-blue-light even:bg-opacity-10">
+                  {row.cells.map(cell => {
+                    return (
+                      <td {...cell.getCellProps()} className="text-center p-1 break-words">
+                        {cell.render('Cell')}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        {page.length == 0 &&
+          <div className="text-center py-10">
+            Tidak ada agenda.
+          </div>
+        }
+      </div>
       <Input onClose={handleOnClose} visible={showModal} />
+      <div className="">
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>{' '}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+        <span>
+          Halaman{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <span>
+          | Go to page:{' '}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={e => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0
+              gotoPage(page)
+            }}
+            style={{ width: '100px' }}
+          />
+        </span>
+      </div>
     </div>
   );
 }
