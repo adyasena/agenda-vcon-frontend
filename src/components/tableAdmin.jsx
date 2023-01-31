@@ -18,7 +18,7 @@ export default function Table({ columns, data }) {
     nextPage,
     canPreviousPage,
     canNextPage,
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = useTable({ columns, data,
     initialState: {
       sortBy: [
@@ -31,7 +31,7 @@ export default function Table({ columns, data }) {
           desc: false
         }
       ],
-      pageSize: 5,
+      pageSize: 10,
     } }, useFilters, useGlobalFilter, useSortBy, usePagination);
   
   const handleFilterTahun = e => {
@@ -70,7 +70,7 @@ export default function Table({ columns, data }) {
         </button> 
       </div>
       <div className="">
-        <table {...getTableProps()} className="w-full table-fixed h-96">
+        <table {...getTableProps()} className="w-full table-fixed">
           <thead>
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()} className="bg-blue-light bg-opacity-20">
@@ -115,38 +115,28 @@ export default function Table({ columns, data }) {
         }
       </div>
       <Input onClose={handleOnClose} visible={showModal} />
-      <div className="">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        <span>
-          Halaman{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
-            }}
-            style={{ width: '100px' }}
-          />
-        </span>
-      </div>
+      {page.length > 0 &&
+        <div className="flex justify-center gap-2 pt-4 items-center">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            {'<<'}
+          </button>{' '}
+          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            {'<'}
+          </button>{' '}
+          <button onClick={() => nextPage()} disabled={!canNextPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            {'>'}
+          </button>{' '}
+          <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            {'>>'}
+          </button>{' '}
+          <span>
+            Halaman{' '}
+            <strong>
+              {pageIndex + 1} dari {pageOptions.length}
+            </strong>
+          </span>
+        </div>
+      }
     </div>
   );
 }
