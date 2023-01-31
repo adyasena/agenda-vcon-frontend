@@ -35,8 +35,10 @@ const Input = ({ visible, onClose }) => {
       if (!res.data.success) throw new Error(res.data.error);
 
       onClose();
+
     } catch (error) {
       console.error(error);
+      
     } finally {
       setIsLoading(false);
     }
@@ -54,7 +56,7 @@ const Input = ({ visible, onClose }) => {
               X
             </button>
           </div>
-          <div className="flex flex-col gap-4" >
+          <form className="flex flex-col gap-4" >
             <div className="flex flex-col items-center gap-2 w-full">
               <div className="flex flex-row justify-between gap-3 mx-auto items-start w-full">
                 <div className="flex flex-col justify-start gap-1 w-1/2">
@@ -109,7 +111,7 @@ const Input = ({ visible, onClose }) => {
                   Tambah
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div className="opacity-50 fixed inset-0 bg-black" id="container"></div>

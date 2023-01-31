@@ -41,12 +41,12 @@ const Agenda = () => {
           formatTanggal();
           return Moment(value).format("DD MMMM YYYY");
         },
-        width: 160,
+        width: 130,
       },
       {
         Header: "Waktu",
         accessor: "waktu",
-        width: 80,
+        width: 60,
       },
       {
         Header: "Host",
@@ -61,7 +61,7 @@ const Agenda = () => {
       {
         Header: "Tempat",
         accessor: "tempat",
-        width: 200,
+        width: 160,
       },
     ], []
   );
@@ -73,7 +73,7 @@ const Agenda = () => {
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
           </div>
-          <div className="container mx-auto pt-2 rounded-md items-center flex flex-col w-full font:roboto ">
+          <div className="container text-sm mx-auto pt-2 rounded-md items-center flex flex-col w-full font:roboto ">
             {isLoading ? (
               <div className="w-full py-10 flex justify-center">
                 <Loading/>

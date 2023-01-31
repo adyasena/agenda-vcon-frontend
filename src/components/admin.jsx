@@ -9,7 +9,7 @@ import NoCircle from "../assets/noCircle.svg";
 
 const Admin = () => {
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
-
+  
   const [agenda, setAgenda] = useState([]);
   useMemo(() => {
     if (!agendaData?.data?.agenda) return;
@@ -32,7 +32,7 @@ const Admin = () => {
         Cell: ({ row, flatRows }) => {
           return flatRows.indexOf(row) + 1;
         },
-        width: 40,
+        width: 30,
       },
       {
         Header: "Tanggal",
@@ -41,12 +41,12 @@ const Admin = () => {
           formatTanggal();
           return Moment(value).format("DD MMMM YYYY");
         },
-        width: 130,
+        width: 120,
       },
       {
         Header: "Waktu",
         accessor: "waktu",
-        width: 60,
+        width: 50,
       },
       {
         Header: "Host",
@@ -56,7 +56,7 @@ const Admin = () => {
       {
         Header: "Peserta",
         accessor: "peserta",
-        width: 150,
+        width: 120,
       },
       {
         Header: "Topik",
@@ -86,7 +86,7 @@ const Admin = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="w-full h-screen pt-20 pb-6 lg:px-12 items-center">
+      <div className="w-full h-[200vh] pt-20 pb-6 lg:px-12 items-center">
         <div className="bg-white py-5 px-5 rounded-xl flex flex-col items-center h-full">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda VCON
