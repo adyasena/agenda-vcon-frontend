@@ -2,7 +2,7 @@ import React from "react";
 import { createFetcher } from "../helpers/fetcher";
 import { useRef, useState } from "react";
 
-const Edit = ({ visible, onClose }) => {
+const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const tanggalRef = useRef();
@@ -34,6 +34,8 @@ const Edit = ({ visible, onClose }) => {
       const res = await fetcher.post("/agenda", agenda);
       if (!res.data.success) throw new Error(res.data.error);
 
+      setRefreshSignal((s) => !s);
+
       onClose();
 
     } catch (error) {
@@ -51,7 +53,7 @@ const Edit = ({ visible, onClose }) => {
       <div className="justify-center items-center flex fixed inset-0 z-10 text-base">
         <div className="w-1/2 mx-auto bg-white p-6 font-roboto rounded-lg shadow-lg relative flex flex-col gap-4">
           <div className="flex items-start font-semibold text-lg">
-            Edit Agenda
+            Tambah Agenda
             <button className="ml-auto bg-transparent" onClick={onClose}>
               X
             </button>
@@ -108,7 +110,7 @@ const Edit = ({ visible, onClose }) => {
                 type="submit"
                 disabled={isLoading}
                 onClick={addAgendaHandler}>
-                  Edit
+                  Tambah
               </button>
             </div>
           </form>
@@ -119,4 +121,4 @@ const Edit = ({ visible, onClose }) => {
   )
 }
 
-export default Edit;
+export default ModalInput;

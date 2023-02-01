@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from "react-table";
-import Input from "./input";
+import Input from "./modalInput";
 
 export default function Table({ columns, data, setRefreshSignal }) {
   const {

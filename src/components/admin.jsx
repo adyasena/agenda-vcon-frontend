@@ -1,23 +1,26 @@
 import React, { useState, useMemo } from "react";
 import Moment from "moment/moment";
 import Loading from "./loading";
-import Table from "./tableAdmin";
-import { useFetch } from "../helpers/useFetch";
+import TableAdmin from "./tableAdmin";
+import ModalEdit from "./modalEdit";
+import ModalDelete from "./modalDelete";
 import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
+import { useFetch } from "../helpers/useFetch";
 import { useLogin } from "../helpers/useLogin";
 import { createFetcher } from "../helpers/fetcher";
-import Edit from "./edit";
 
 const Admin = () => {
   useLogin();
   const [refreshSignal, setRefreshSignal] = useState(false);
   const {error, isLoading, data: agendaData} = useFetch("/agenda", refreshSignal);
+  const [id, setId] = useState();
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  console.log(refreshSignal);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
   const handleOnClose = () => {
-    setShowModal(false);
+    setShowModalEdit(false);
+    setShowModalDelete(false);
   };
 
   const [agenda, setAgenda] = useState([]);
@@ -118,8 +121,8 @@ const Admin = () => {
           let id =(agenda._id);
           return ( 
             <div className="flex justify-center gap-2">
-              <button onClick={() => {setShowModal(true); editHandler(id)}} className={"rounded-full " + (isDeleteLoading && "bg-blue-light")}>edit</button>
-              <button onClick={() => {deleteHandler(id)}} className={"rounded-full " + (isDeleteLoading ? "bg-grey" : "bg-blue-light")}>hapus</button>
+              <button onClick={() => {setId(id); setShowModalEdit(true);}} className={"rounded-full " + (isDeleteLoading && "bg-blue-light")}>edit</button>
+              <button onClick={() => {setId(id); setShowModalDelete(true)}} className={"rounded-full " + (isDeleteLoading ? "bg-grey" : "bg-blue-light")}>hapus</button>
             </div>
           )
         },
@@ -141,12 +144,13 @@ const Admin = () => {
                 <Loading/>
               </div>
             ) : (
-              <Table columns={columns} data={agenda} setRefreshSignal={setRefreshSignal}/>
+              <TableAdmin columns={columns} data={agenda} setRefreshSignal={setRefreshSignal}/>
             )}
           </div>
         </div>
       </div>
-      <Edit onClose={handleOnClose} visible={showModal}></Edit>
+      <ModalEdit onClose={handleOnClose} visible={showModalEdit} />
+      <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} />
     </div>
   )
 }

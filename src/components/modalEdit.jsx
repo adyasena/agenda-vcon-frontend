@@ -2,7 +2,7 @@ import React from "react";
 import { createFetcher } from "../helpers/fetcher";
 import { useRef, useState } from "react";
 
-const Input = ({ visible, onClose, setRefreshSignal }) => {
+const ModalEdit = ({ visible, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const tanggalRef = useRef();
@@ -14,7 +14,7 @@ const Input = ({ visible, onClose, setRefreshSignal }) => {
   const tempatRef = useRef();
   const keteranganRef = useRef();
 
-  const addAgendaHandler = async () => {
+  const editAgendaHandler = async () => {
     try {
       setIsLoading(true);
 
@@ -34,8 +34,6 @@ const Input = ({ visible, onClose, setRefreshSignal }) => {
       const res = await fetcher.post("/agenda", agenda);
       if (!res.data.success) throw new Error(res.data.error);
 
-      setRefreshSignal((s) => !s);
-
       onClose();
 
     } catch (error) {
@@ -53,7 +51,7 @@ const Input = ({ visible, onClose, setRefreshSignal }) => {
       <div className="justify-center items-center flex fixed inset-0 z-10 text-base">
         <div className="w-1/2 mx-auto bg-white p-6 font-roboto rounded-lg shadow-lg relative flex flex-col gap-4">
           <div className="flex items-start font-semibold text-lg">
-            Tambah Agenda
+            Ubah Agenda
             <button className="ml-auto bg-transparent" onClick={onClose}>
               X
             </button>
@@ -109,8 +107,8 @@ const Input = ({ visible, onClose, setRefreshSignal }) => {
                 className="py-2 px-4 rounded-md hover:bg-blue-primary bg-blue-light text-white ease transition-all duration-300"
                 type="submit"
                 disabled={isLoading}
-                onClick={addAgendaHandler}>
-                  Tambah
+                onClick={editAgendaHandler}>
+                  Ubah
               </button>
             </div>
           </form>
@@ -121,4 +119,4 @@ const Input = ({ visible, onClose, setRefreshSignal }) => {
   )
 }
 
-export default Input;
+export default ModalEdit;
