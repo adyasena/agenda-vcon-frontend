@@ -7,13 +7,19 @@ import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
 import { useLogin } from "../helpers/useLogin";
 import { createFetcher } from "../helpers/fetcher";
+import Edit from "./edit";
 
 const Admin = () => {
   useLogin();
-  const {error, isLoading, data: agendaData} = useFetch("/agenda");
   const [refreshSignal, setRefreshSignal] = useState(false);
+  const {error, isLoading, data: agendaData} = useFetch("/agenda", refreshSignal);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  
+  const [showModal, setShowModal] = useState(false);
+  console.log(refreshSignal);
+  const handleOnClose = () => {
+    setShowModal(false);
+  };
+
   const [agenda, setAgenda] = useState([]);
   useMemo(() => {
     if (!agendaData?.data?.agenda) return;
@@ -32,9 +38,9 @@ const Admin = () => {
       setIsDeleteLoading(false);
     }
   }
-  const editHandler = async (a) => {
+  const editHandler = async (id) => {
     try {
-      console.log("/agenda/"+ a)
+      console.log("/agenda/"+ id)
     }
     catch (error) {
       console.error(error)
@@ -112,8 +118,7 @@ const Admin = () => {
           let id =(agenda._id);
           return ( 
             <div className="flex justify-center gap-2">
-              <div>{id}</div>
-              <button onClick={() => {editHandler(id)}} className={"rounded-full " + (isDeleteLoading && "bg-blue-light")}>edit</button>
+              <button onClick={() => {setShowModal(true); editHandler(id)}} className={"rounded-full " + (isDeleteLoading && "bg-blue-light")}>edit</button>
               <button onClick={() => {deleteHandler(id)}} className={"rounded-full " + (isDeleteLoading ? "bg-grey" : "bg-blue-light")}>hapus</button>
             </div>
           )
@@ -136,11 +141,12 @@ const Admin = () => {
                 <Loading/>
               </div>
             ) : (
-              <Table columns={columns} data={agenda} />
+              <Table columns={columns} data={agenda} setRefreshSignal={setRefreshSignal}/>
             )}
           </div>
         </div>
       </div>
+      <Edit onClose={handleOnClose} visible={showModal}></Edit>
     </div>
   )
 }
