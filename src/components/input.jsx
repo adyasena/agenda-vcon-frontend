@@ -2,7 +2,7 @@ import React from "react";
 import { createFetcher } from "../helpers/fetcher";
 import { useRef, useState } from "react";
 
-const Input = ({ visible, onClose }) => {
+const Input = ({ visible, onClose, setRefreshSignal }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const tanggalRef = useRef();
@@ -33,6 +33,8 @@ const Input = ({ visible, onClose }) => {
 
       const res = await fetcher.post("/agenda", agenda);
       if (!res.data.success) throw new Error(res.data.error);
+
+      setRefreshSignal((s) => !s);
 
       onClose();
 

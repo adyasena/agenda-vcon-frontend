@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from "react-table";
 import Input from "./input";
 
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, setRefreshSignal }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -114,7 +114,7 @@ export default function Table({ columns, data }) {
           </div>
         }
       </div>
-      <Input onClose={handleOnClose} visible={showModal} />
+      <Input onClose={handleOnClose} visible={showModal} setRefreshSignal={setRefreshSignal}/>
       {page.length > 0 &&
         <div className="flex justify-center gap-2 pt-4 items-center">
           <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
