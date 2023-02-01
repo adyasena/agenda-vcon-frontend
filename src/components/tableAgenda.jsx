@@ -3,6 +3,11 @@ import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from 
 import Moment from "moment/moment";
 
 export default function Table({ columns, data }) {
+  var now = new Date();
+  let currentDate = Moment(new Date().toLocaleDateString()).format("YYYY-MM-DD");
+  let currentMonth = Moment(new Date().toLocaleDateString()).format("YYYY-MM");
+  let nextMonth = Moment(new Date(now.getFullYear(), now.getMonth()+1).toLocaleDateString()).format("YYYY-MM");
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -31,23 +36,16 @@ export default function Table({ columns, data }) {
           desc: false
         }
       ],
-      pageSize: 10,
+      pageSize: 6,
+      filters: [{id: "tanggal", value: currentDate }],
     } }, useFilters, useGlobalFilter, useSortBy, usePagination);
   
-  const handleFilterTahun = e => {
-    const value = e.target.value;
-    setFilter("tanggal", value);
-  };
-
   const handleFilterTanggal = e => {
     const value = e.target.value;
     setFilter("tanggal", value);
   };
 
   const { globalFilter } = state;
-
-  let currentDate = new Date().toLocaleDateString();
-  let a = Moment(currentDate).format("l");
 
   return (
     <div className="text-black">
@@ -59,15 +57,10 @@ export default function Table({ columns, data }) {
             value={globalFilter || ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
-          <select defaultValue={2023} onChange={handleFilterTahun} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
-            <option value="">Semua Tahun</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-          </select>
-          <select defaultValue={a} onChange={handleFilterTanggal} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
-            <option value={a}>Hari Ini</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
+          <select defaultValue={currentDate} onChange={handleFilterTanggal} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+            <option value={currentDate}>Hari Ini</option>
+            <option value={currentMonth}>Bulan Ini</option>
+            <option value={nextMonth}>Bulan Depan</option>
           </select>
       </div>
       <div className="">
