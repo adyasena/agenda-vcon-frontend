@@ -4,8 +4,7 @@ import Loading from "./loading";
 import TableAdmin from "./tableAdmin";
 import ModalEdit from "./modalEdit";
 import ModalDelete from "./modalDelete";
-import YesCircle from "../assets/yesCircle.svg";
-import NoCircle from "../assets/noCircle.svg";
+import { YesCircle, NoCircle, Edit, Delete } from "../assets";
 import { useFetch } from "../helpers/useFetch";
 import { useLogin } from "../helpers/useLogin";
 
@@ -100,8 +99,8 @@ const Admin = () => {
           let id =(agenda._id);
           return ( 
             <div className="flex justify-center gap-2">
-              <button onClick={() => {setId(id); setShowModalEdit(true);}} className="rounded-full bg-blue-light">edit</button>
-              <button onClick={() => {setId(id); setShowModalDelete(true)}} className="rounded-full bg-red-primary">hapus</button>
+              <button onClick={() => {setId(id); setShowModalEdit(true);}} className="rounded-full p-1 bg-blue-light"><img src={Edit} className="w-3"/></button>
+              <button onClick={() => {setId(id); setShowModalDelete(true)}} className="rounded-full p-1 bg-red-primary"><img src={Delete} className="w-3"/></button>
             </div>
           )
         },

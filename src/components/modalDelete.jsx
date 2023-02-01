@@ -26,7 +26,7 @@ const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
   return (
     <>
       <div className="justify-center items-center flex fixed inset-0 z-10 text-base">
-        <div className="w-1/3 mx-auto bg-white p-6 font-roboto rounded-lg shadow-lg relative flex flex-col gap-10">
+        <div className="w-[30%] mx-auto bg-white p-6 font-roboto rounded-lg shadow-lg relative flex flex-col gap-10">
           <div className="flex items-start font-semibold text-lg">
             Hapus Agenda
             <button className="ml-auto bg-transparent" onClick={onClose}>
