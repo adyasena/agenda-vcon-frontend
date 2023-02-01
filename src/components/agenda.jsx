@@ -37,10 +37,7 @@ const Agenda = () => {
         accessor: "tanggal",
         Cell: ({value}) => {
           formatTanggal();
-          let currentDate = new Date().toLocaleDateString();
-          let a = Moment(value).format("l");
-          let rowTanggal = Moment(value).format("DD MMMM YYYY");
-          return rowTanggal;
+          return Moment(value).format("DD MMMM YYYY");
         },
         width: 130,
       },

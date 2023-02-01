@@ -20,7 +20,7 @@ const Navbar = () => {
       </div>
       <div className={"z-[1] font-poppins sticky flex flex-row container mx-auto lg:px-12 text-center items-center text-lg font-semibold " +
         "justify-between transform duration-300 ease overflow-hidden " + (scroll ? "h-16" : "h-24")}>
-        <a href="/"className="flex flex-row justify-start items-center text-white h-full">
+        <a href="/" className="flex flex-row justify-start items-center text-white h-full">
           <img src={LogoKominfo} alt="logo kominfo" className={"m-2 transform duration-300 ease " + (scroll ? "w-8" : "w-0 mr-[-4px]")}/>
           <p className="transform">Agenda VCON</p> 
         </a>
