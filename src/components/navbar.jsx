@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LogoKominfo from "../assets/logo_kominfo.png";
+import { LogoKominfo } from "../assets";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import BgHome from "../assets/home.jpg";
-import LogoKominfo from "../assets/logo_kominfo.png";
-import LogoPurworejo from "../assets/logo_purworejo.png";
+import React from "react";
+import { BgHome, LogoKominfo, LogoPurworejo } from "../assets";
 
 const Home = () => {
   const scrollToBottom = () => {

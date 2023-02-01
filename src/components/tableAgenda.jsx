@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from "react-table";
 import Moment from "moment/moment";
+import { ChevronLeft, ChevronRight, ChevronDoubleLeft, ChevronDoubleRight } from "../assets";
 
 export default function Table({ columns, data }) {
   var now = new Date();
@@ -110,20 +111,20 @@ export default function Table({ columns, data }) {
       </div>
       {page.length > 0 &&
         <div className="flex justify-center gap-2 pt-4 items-center">
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            {'<<'}
-          </button>{' '}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            {'<'}
-          </button>{' '}
-          <button onClick={() => nextPage()} disabled={!canNextPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            {'>'}
-          </button>{' '}
-          <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="bg-blue-light text-white font-semibold rounded-md px-1 disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            {'>>'}
-          </button>{' '}
-          <span>
-            Halaman{' '}
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            <img src={ChevronDoubleLeft} className="w-3"/>
+          </button>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            <img src={ChevronLeft} className="w-3"/>
+          </button>
+          <button onClick={() => nextPage()} disabled={!canNextPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            <img src={ChevronRight} className="w-3"/>
+          </button>
+          <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+            <img src={ChevronDoubleRight} className="w-3"/>
+          </button>
+          <span className="flex flex-row gap-1">
+            Halaman 
             <strong>
               {pageIndex + 1} dari {pageOptions.length}
             </strong>

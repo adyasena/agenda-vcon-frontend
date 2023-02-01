@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import BgHome from "../assets/home.jpg";
+import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router";
+import { BgHome } from "../assets";
 import UserContext from "../helpers/userContext";
 import { fetcher } from "../helpers/fetcher";
-import { useContext } from "react";
-import { useNavigate } from "react-router";
 
 const Login = () => {
   const navigate = useNavigate();
