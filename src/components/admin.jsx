@@ -20,12 +20,11 @@ const Admin = () => {
     setAgenda(agendaData.data.agenda);
   }, [agendaData]);
 
-
-  const deleteHandler = async (a) => {
+  const deleteHandler = async (id) => {
     try {
       setIsDeleteLoading(true);
       const fetcher = createFetcher();
-      await fetcher.delete("/agenda/" + a);
+      await fetcher.delete("/agenda/" + id);
       setRefreshSignal((s) => !s);
     } catch (error) {
       console.error("Error saat menghapus", error)
@@ -114,8 +113,8 @@ const Admin = () => {
           return ( 
             <div className="flex justify-center gap-2">
               <div>{id}</div>
-              <button onClick={() => {editHandler(id)}} className="rounded-full bg-blue-light">edit</button>
-              <button onClick={() => { deleteHandler(id);}} className="rounded-full bg-blue-primary">hapus</button>
+              <button onClick={() => {editHandler(id)}} className={"rounded-full " + (isDeleteLoading && "bg-blue-light")}>edit</button>
+              <button onClick={() => {deleteHandler(id)}} className={"rounded-full " + (isDeleteLoading ? "bg-grey" : "bg-blue-light")}>hapus</button>
             </div>
           )
         },
