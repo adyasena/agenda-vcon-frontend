@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { createFetcher } from "../helpers/fetcher";
-import { useRef, useState } from "react";
 
 const ModalEdit = ({ visible, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);

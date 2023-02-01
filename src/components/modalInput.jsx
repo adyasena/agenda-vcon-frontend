@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { createFetcher } from "../helpers/fetcher";
-import { useRef, useState } from "react";
 
 const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +34,6 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
       if (!res.data.success) throw new Error(res.data.error);
 
       setRefreshSignal((s) => !s);
-
       onClose();
 
     } catch (error) {
@@ -51,6 +49,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
   return (
     <>
       <div className="justify-center items-center flex fixed inset-0 z-10 text-base">
+        
         <div className="w-1/2 mx-auto bg-white p-6 font-roboto rounded-lg shadow-lg relative flex flex-col gap-4">
           <div className="flex items-start font-semibold text-lg">
             Tambah Agenda
