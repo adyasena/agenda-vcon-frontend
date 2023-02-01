@@ -6,16 +6,41 @@ import { useFetch } from "../helpers/useFetch";
 import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
 import { useLogin } from "../helpers/useLogin";
+import { createFetcher } from "../helpers/fetcher";
 
 const Admin = () => {
   useLogin();
   const {error, isLoading, data: agendaData} = useFetch("/agenda");
+  const [refreshSignal, setRefreshSignal] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   
   const [agenda, setAgenda] = useState([]);
   useMemo(() => {
     if (!agendaData?.data?.agenda) return;
     setAgenda(agendaData.data.agenda);
   }, [agendaData]);
+
+
+  const deleteHandler = async (a) => {
+    try {
+      setIsDeleteLoading(true);
+      const fetcher = createFetcher();
+      await fetcher.delete("/agenda/" + a);
+      setRefreshSignal((s) => !s);
+    } catch (error) {
+      console.error("Error saat menghapus", error)
+    } finally {
+      setIsDeleteLoading(false);
+    }
+  }
+  const editHandler = async (a) => {
+    try {
+      console.log("/agenda/"+ a)
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
 
   const formatTanggal = () => {
     Moment.updateLocale("id", {
@@ -84,11 +109,13 @@ const Admin = () => {
       },
       {
         Header: "Action",
-        Cell: () => {
-          return (
+        accessor: agenda => {
+          let id =(agenda._id);
+          return ( 
             <div className="flex justify-center gap-2">
-              <button className="rounded-full bg-blue-light">e</button>
-              <button className="rounded-full bg-blue-primary">h</button>
+              <div>{id}</div>
+              <button onClick={() => {editHandler(id)}} className="rounded-full bg-blue-light">edit</button>
+              <button onClick={() => { deleteHandler(id);}} className="rounded-full bg-blue-primary">hapus</button>
             </div>
           )
         },
