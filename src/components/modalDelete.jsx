@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { createFetcher } from "../helpers/fetcher";
 
-const ModalDelete = ({ visible, onClose, row }) => {
+const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+
   const deleteHandler = async (id) => {
     try {
       setIsDeleteLoading(true);
+
       const fetcher = createFetcher();
       await fetcher.delete("/agenda/" + id);
+
+      setRefreshSignal((s) => !s);
+      onClose();
+      
     } catch (error) {
       console.error("Error saat menghapus", error)
+
     } finally {
       setIsDeleteLoading(false);
     }
