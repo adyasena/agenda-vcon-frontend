@@ -8,47 +8,26 @@ import YesCircle from "../assets/yesCircle.svg";
 import NoCircle from "../assets/noCircle.svg";
 import { useFetch } from "../helpers/useFetch";
 import { useLogin } from "../helpers/useLogin";
-import { createFetcher } from "../helpers/fetcher";
 
 const Admin = () => {
   useLogin();
   const [refreshSignal, setRefreshSignal] = useState(false);
   const {error, isLoading, data: agendaData} = useFetch("/agenda", refreshSignal);
   const [id, setId] = useState();
-  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
+
   const handleOnClose = () => {
     setShowModalEdit(false);
     setShowModalDelete(false);
   };
 
   const [agenda, setAgenda] = useState([]);
+
   useMemo(() => {
     if (!agendaData?.data?.agenda) return;
     setAgenda(agendaData.data.agenda);
   }, [agendaData]);
-
-  const deleteHandler = async (id) => {
-    try {
-      setIsDeleteLoading(true);
-      const fetcher = createFetcher();
-      await fetcher.delete("/agenda/" + id);
-      setRefreshSignal((s) => !s);
-    } catch (error) {
-      console.error("Error saat menghapus", error)
-    } finally {
-      setIsDeleteLoading(false);
-    }
-  }
-  const editHandler = async (id) => {
-    try {
-      console.log("/agenda/"+ id)
-    }
-    catch (error) {
-      console.error(error)
-    }
-  }
 
   const formatTanggal = () => {
     Moment.updateLocale("id", {
@@ -121,8 +100,8 @@ const Admin = () => {
           let id =(agenda._id);
           return ( 
             <div className="flex justify-center gap-2">
-              <button onClick={() => {setId(id); setShowModalEdit(true);}} className={"rounded-full " + (isDeleteLoading && "bg-blue-light")}>edit</button>
-              <button onClick={() => {setId(id); setShowModalDelete(true)}} className={"rounded-full " + (isDeleteLoading ? "bg-grey" : "bg-blue-light")}>hapus</button>
+              <button onClick={() => {setId(id); setShowModalEdit(true);}} className="rounded-full bg-blue-light">edit</button>
+              <button onClick={() => {setId(id); setShowModalDelete(true)}} className="rounded-full bg-red-primary">hapus</button>
             </div>
           )
         },
@@ -150,7 +129,7 @@ const Admin = () => {
         </div>
       </div>
       <ModalEdit onClose={handleOnClose} visible={showModalEdit} />
-      <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} />
+      <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} setRefreshSignal={setRefreshSignal} />
     </div>
   )
 }
