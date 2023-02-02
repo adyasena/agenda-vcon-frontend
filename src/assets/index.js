@@ -10,6 +10,7 @@ import YesCircle from "./yesCircle.svg"
 import Edit from "./edit.svg"
 import Delete from "./delete.svg"
 import Close from "./close.svg"
+import NotFound404 from "./404.png"
 
 export { BgHome, LogoKominfo, LogoPurworejo, ChevronLeft, ChevronRight, 
-  ChevronDoubleLeft, ChevronDoubleRight, NoCircle, YesCircle, Edit, Delete, Close }
+  ChevronDoubleLeft, ChevronDoubleRight, NoCircle, YesCircle, Edit, Delete, Close, NotFound404 }

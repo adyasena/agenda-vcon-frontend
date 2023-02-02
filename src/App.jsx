@@ -1,15 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import Homepage from "./page/homepage";
-import Loginpage from "./page/loginpage";
-import Adminpage from "./page/adminpage";
+import HomePage from "./page/homePage";
+import LoginPage from "./page/loginPage";
+import AdminPage from "./page/adminPage";
+import NotFoundPage from "./page/notFoundPage";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/vcon-login" element={<Loginpage />} />
-        <Route path="/vcon-admin" element={<Adminpage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/vcon-login" element={<LoginPage />} />
+        <Route path="/vcon-admin" element={<AdminPage />} />
+        <Route path="*" element={<NotFoundPage />}/>
       </Routes>
     </>
   );
