@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Close } from "../assets";
 import { createFetcher } from "../helpers/fetcher";
 
 const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
@@ -30,7 +31,7 @@ const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
           <div className="flex items-start font-semibold text-lg">
             Hapus Agenda
             <button className="ml-auto bg-transparent" onClick={onClose}>
-              X
+              <img src={Close} className="w-6 rounded-md hover:bg-grey ease transition-all duration-300" />
             </button>
           </div>
           <div className="flex flex-col gap-10">
@@ -39,7 +40,7 @@ const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
             </div>
             <div className="flex flex-row items-center justify-end gap-2">
               <button
-                className="text-red-primary hover:text-red-dark bg-none py-2 px-4 ease transition-all duration-300"
+                className="text-red-primary hover:text-red-dark rounded-md hover:bg-grey py-2 px-4 ease transition-all duration-300"
                 type="button"
                 onClick={onClose}>
                   Batal
