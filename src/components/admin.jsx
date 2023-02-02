@@ -99,7 +99,7 @@ const Admin = () => {
           let id =(agenda._id);
           return ( 
             <div className="flex justify-center gap-1">
-              <button onClick={() => {setId(id); setShowModalEdit(true);}} className="rounded-md p-1 bg-blue-light"><img src={Edit} className="w-4"/></button>
+              <button onClick={() => {setId(agenda); setShowModalEdit(true);}} className="rounded-md p-1 bg-blue-light"><img src={Edit} className="w-4"/></button>
               <button onClick={() => {setId(id); setShowModalDelete(true)}} className="rounded-md p-1 bg-red-primary"><img src={Delete} className="w-4"/></button>
             </div>
           )
@@ -127,7 +127,7 @@ const Admin = () => {
           </div>
         </div>
       </div>
-      <ModalEdit onClose={handleOnClose} visible={showModalEdit} setRefreshSignal={setRefreshSignal}/>
+      <ModalEdit onClose={handleOnClose} visible={showModalEdit} row={id} setRefreshSignal={setRefreshSignal} />
       <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} setRefreshSignal={setRefreshSignal} />
     </div>
   )

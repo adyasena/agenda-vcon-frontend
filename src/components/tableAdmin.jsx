@@ -118,18 +118,20 @@ export default function Table({ columns, data, setRefreshSignal }) {
       <ModalInput onClose={handleOnClose} visible={showModal} setRefreshSignal={setRefreshSignal}/>
       {page.length > 0 &&
         <div className="flex justify-center gap-2 pt-4 items-center">
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            <img src={ChevronDoubleLeft} className="w-3"/>
-          </button>
-          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            <img src={ChevronLeft} className="w-3"/>
-          </button>
-          <button onClick={() => nextPage()} disabled={!canNextPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            <img src={ChevronRight} className="w-3"/>
-          </button>
-          <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
-            <img src={ChevronDoubleRight} className="w-3"/>
-          </button>
+          <div className="flex gap-1">
+            <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+              <img src={ChevronDoubleLeft} className="w-3"/>
+            </button>
+            <button onClick={() => previousPage()} disabled={!canPreviousPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+              <img src={ChevronLeft} className="w-3"/>
+            </button>
+            <button onClick={() => nextPage()} disabled={!canNextPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+              <img src={ChevronRight} className="w-3"/>
+            </button>
+            <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="bg-blue-light p-1 text-white font-semibold rounded-md disabled:bg-grey enabled:hover:bg-blue-primary transition ease-linear duration-300">
+              <img src={ChevronDoubleRight} className="w-3"/>
+            </button>
+          </div>
           <span className="flex flex-row gap-1">
             Halaman 
             <strong>
