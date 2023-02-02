@@ -9,4 +9,4 @@ const LoginAdmin = () => {
   )
 }
 
-export default LoginAdmin ;
+export default LoginAdmin;

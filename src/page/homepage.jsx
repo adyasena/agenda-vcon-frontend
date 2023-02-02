@@ -3,7 +3,7 @@ import Navbar from "../components/navbarHome";
 import Home from "../components/home";
 import Agenda from "../components/agenda";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <>
       <Navbar />
@@ -13,4 +13,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage ;
+export default HomePage;

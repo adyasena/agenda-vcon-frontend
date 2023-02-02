@@ -50,7 +50,6 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
   return (
     <>
       <div className="justify-center items-center flex fixed inset-0 z-10 text-base">
-        
         <div className="w-1/2 mx-auto bg-white p-6 font-roboto rounded-lg shadow-lg relative flex flex-col gap-4">
           <div className="flex items-start font-semibold text-lg">
             Tambah Agenda

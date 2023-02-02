@@ -2,7 +2,7 @@ import React from "react";
 import NavbarAdmin from "../components/navbarAdmin";
 import Admin from "../components/admin";
 
-const LoginAdmin = () => {
+const AdminPage = () => {
   return (
     <>
       <NavbarAdmin />
@@ -11,4 +11,4 @@ const LoginAdmin = () => {
   )
 }
 
-export default LoginAdmin ;
+export default AdminPage;

@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
+import Moment from "moment/moment";
 import TableAgenda from "./tableAgenda";
 import Loading from "./loading";
 import { useFetch } from "../helpers/useFetch";
-import Moment from "moment/moment";
 
 const Agenda = () => {
   

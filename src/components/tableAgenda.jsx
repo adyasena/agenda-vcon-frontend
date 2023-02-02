@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from "react-table";
 import Moment from "moment/moment";
 import { ChevronLeft, ChevronRight, ChevronDoubleLeft, ChevronDoubleRight } from "../assets";
