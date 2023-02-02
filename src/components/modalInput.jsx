@@ -94,7 +94,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
               </div>
               <div className="flex flex-col justify-start w-full gap-1">
                 <label className="text-sm">Keterangan</label>
-                <input ref={keteranganRef} name="keterangan" type="text" className="py-1 px-2 rounded-md border-black border bg-white focus:outline-blue-light" />
+                <input ref={keteranganRef} defaultValue="Zoom" name="keterangan" type="text" className="py-1 px-2 rounded-md border-black border bg-white focus:outline-blue-light" />
               </div>
             </div>
             <div className="flex flex-row items-center justify-end gap-2">
