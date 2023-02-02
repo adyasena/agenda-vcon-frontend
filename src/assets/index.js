@@ -9,6 +9,7 @@ import NoCircle from "./noCircle.svg"
 import YesCircle from "./yesCircle.svg"
 import Edit from "./edit.svg"
 import Delete from "./delete.svg"
+import Close from "./close.svg"
 
 export { BgHome, LogoKominfo, LogoPurworejo, ChevronLeft, ChevronRight, 
-  ChevronDoubleLeft, ChevronDoubleRight, NoCircle, YesCircle, Edit, Delete }
+  ChevronDoubleLeft, ChevronDoubleRight, NoCircle, YesCircle, Edit, Delete, Close }
