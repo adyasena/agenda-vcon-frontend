@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const useLogin = (redirectEndpointFallback = "/") => {
+export const useLogin = (redirectEndpointFallback = "/vcon-login") => {
     const navigate = useNavigate();
 
     const redirect = () => {
