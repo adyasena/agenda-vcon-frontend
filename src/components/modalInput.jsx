@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { ToastContainer, toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Close } from "../assets";
 import { createFetcher } from "../helpers/fetcher";
 
@@ -17,7 +19,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
   const addAgendaHandler = async () => {
     try {
       setIsLoading(true);
-
+      
       const agenda = {
         tanggal: tanggalRef.current.value,
         waktu: waktuRef.current.value,  
@@ -28,17 +30,38 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
         keterangan: keteranganRef.current.value,
         suratPinjam: suratRef.current.checked,
       }; 
-
+      
       const fetcher = createFetcher();
-
+      
       const res = await fetcher.post("/agenda", agenda);
       if (!res.data.success) throw new Error(res.data.error);
-
+      {res.data.success && toast.success("Berhasil menambah agenda!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Flip,
+      });}
+      
       setRefreshSignal((s) => !s);
       onClose();
 
     } catch (error) {
-      console.error(error);
+      toast.error("Data tidak lengkap", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Flip,
+      });
       
     } finally {
       setIsLoading(false);
@@ -114,6 +137,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
             </div>
           </form>
         </div>
+        <ToastContainer />
       </div>
       <div className="opacity-50 fixed inset-0 bg-black" id="container"></div>
     </>

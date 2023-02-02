@@ -1,10 +1,24 @@
 import React, { useState } from "react";
+import { ToastContainer, toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Close } from "../assets";
 import { createFetcher } from "../helpers/fetcher";
 
 const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-
+  const toastSuccess = () => {
+    toast.success("Berhasil menghapus agenda!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+      transition: Flip,
+    });
+  }
   const deleteHandler = async (id) => {
     try {
       setIsDeleteLoading(true);
@@ -12,9 +26,11 @@ const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
       const fetcher = createFetcher();
       await fetcher.delete("/agenda/" + id);
 
+      toastSuccess();
+
       setRefreshSignal((s) => !s);
       onClose();
-      
+
     } catch (error) {
       console.error("Error saat menghapus", error)
 
@@ -54,6 +70,7 @@ const ModalDelete = ({ visible, onClose, row, setRefreshSignal }) => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
       <div className="opacity-50 fixed inset-0 bg-black" id="container"></div>
     </>
