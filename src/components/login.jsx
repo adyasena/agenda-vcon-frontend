@@ -3,8 +3,10 @@ import { useNavigate } from "react-router";
 import { BgHome } from "../assets";
 import UserContext from "../helpers/userContext";
 import { fetcher } from "../helpers/fetcher";
+import { useLogin } from "../helpers/useLogin";
 
 const Login = () => {
+  useLogin();
   const navigate = useNavigate();
   const {setUser} = useContext(UserContext);
 

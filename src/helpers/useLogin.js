@@ -13,6 +13,8 @@ export const useLogin = (redirectEndpointFallback = "/vcon-login") => {
         if (!accessToken) {
             redirect();
             return;
+        } else {
+            navigate("/vcon-admin");
         }
     }, []);
 };
