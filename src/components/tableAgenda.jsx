@@ -58,6 +58,12 @@ export default function Table({ columns, data }) {
             value={globalFilter || ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
+          <input 
+            type="date"
+            className="py-1 px-2 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
+            onChange={handleFilterTanggal}
+            defaultValue={currentDate}
+          />
           <select defaultValue={currentDate} onChange={handleFilterTanggal} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
             <option value={currentDate}>Hari Ini</option>
             <option value={currentMonth}>Bulan Ini</option>
