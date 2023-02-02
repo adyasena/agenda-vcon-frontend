@@ -127,7 +127,7 @@ const Admin = () => {
           </div>
         </div>
       </div>
-      <ModalEdit onClose={handleOnClose} visible={showModalEdit} />
+      <ModalEdit onClose={handleOnClose} visible={showModalEdit} setRefreshSignal={setRefreshSignal}/>
       <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} setRefreshSignal={setRefreshSignal} />
     </div>
   )

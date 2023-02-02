@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { createFetcher } from "../helpers/fetcher";
 
-const ModalEdit = ({ visible, onClose }) => {
+const ModalEdit = ({ visible, onClose, setRefreshSignal, InitialAgenda }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const tanggalRef = useRef();
