@@ -51,7 +51,7 @@ const Admin = () => {
         accessor: "tanggal",
         Cell: ({value}) => {
           formatTanggal();
-          return Moment(value).format("DD MMMM YYYY");
+          return Moment(value).format("D MMMM YYYY");
         },
         width: 120,
       },
