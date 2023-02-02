@@ -4,6 +4,7 @@ import { createFetcher } from "../helpers/fetcher";
 import { Close } from "../assets";
 
 const ModalEdit = ({ visible, onClose, row, setRefreshSignal }) => {
+
   const [isLoading, setIsLoading] = useState(false);
 
   const tanggalRef = useRef();
