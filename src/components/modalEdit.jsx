@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Moment from "moment/moment";
-import { createFetcher } from "../helpers/fetcher";
 import { Close } from "../assets";
+import { createFetcher } from "../helpers/fetcher";
 
 const ModalEdit = ({ visible, onClose, row, setRefreshSignal }) => {
 
@@ -101,7 +101,7 @@ const ModalEdit = ({ visible, onClose, row, setRefreshSignal }) => {
             </div>
             <div className="flex flex-row items-center justify-end gap-2">
               <button
-                className="text-blue-light rounded-md hover:text-blue-primary hover:bg-grey bg-none py-2 px-4 ease transition-all duration-300"
+                className="text-blue-light rounded-md hover:text-blue-primary hover:bg-grey py-2 px-4 ease transition-all duration-300"
                 type="button"
                 onClick={onClose}>
                   Batal

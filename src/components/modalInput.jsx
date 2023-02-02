@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Close } from "../assets";
 import { createFetcher } from "../helpers/fetcher";
 
 const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
@@ -54,7 +55,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
           <div className="flex items-start font-semibold text-lg">
             Tambah Agenda
             <button className="ml-auto bg-transparent" onClick={onClose}>
-              X
+              <img src={Close} className="w-6 rounded-md hover:bg-grey ease transition-all duration-300" />
             </button>
           </div>
           <form className="flex flex-col gap-4" >
@@ -99,7 +100,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
             </div>
             <div className="flex flex-row items-center justify-end gap-2">
               <button
-                className="text-blue-light hover:text-blue-primary bg-none py-2 px-4 ease transition-all duration-300"
+                className="text-blue-light rounded-md hover:text-blue-primary hover:bg-grey py-2 px-4 ease transition-all duration-300"
                 type="button"
                 onClick={onClose}>
                   Batal
