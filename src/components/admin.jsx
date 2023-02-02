@@ -88,8 +88,8 @@ const Admin = () => {
       {
         Header: "Surat Pinjam",
         accessor: agenda => {
-          return ((agenda.suratPinjam ? <img src={YesCircle} alt="Ada" className="w-5 items-center inline" /> 
-            : <img src={NoCircle} alt="Tidak Ada" className="w-5 items-center inline" />));
+          return ((agenda.suratPinjam ? <img src={YesCircle} alt="Ada" className="w-6 items-center inline" /> 
+            : <img src={NoCircle} alt="Tidak Ada" className="w-6 items-center inline" />));
         },
         width: 60,
       },
@@ -98,9 +98,9 @@ const Admin = () => {
         accessor: agenda => {
           let id =(agenda._id);
           return ( 
-            <div className="flex justify-center gap-2">
-              <button onClick={() => {setId(id); setShowModalEdit(true);}} className="rounded-full p-1 bg-blue-light"><img src={Edit} className="w-3"/></button>
-              <button onClick={() => {setId(id); setShowModalDelete(true)}} className="rounded-full p-1 bg-red-primary"><img src={Delete} className="w-3"/></button>
+            <div className="flex justify-center gap-1">
+              <button onClick={() => {setId(id); setShowModalEdit(true);}} className="rounded-md p-1 bg-blue-light"><img src={Edit} className="w-4"/></button>
+              <button onClick={() => {setId(id); setShowModalDelete(true)}} className="rounded-md p-1 bg-red-primary"><img src={Delete} className="w-4"/></button>
             </div>
           )
         },

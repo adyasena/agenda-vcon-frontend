@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LogoKominfo } from "../assets";
 
-const Navbar = () => {
+const NavbarHome = () => {
   const [scroll, setScroll] = useState(false);
   const changeClass = () => {
     if (window.scrollY >= 180) {
@@ -33,4 +33,4 @@ const Navbar = () => {
   )
 };
 
-export default Navbar;
+export default NavbarHome;
