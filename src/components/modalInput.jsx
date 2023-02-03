@@ -130,7 +130,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal, setShowToast }) => {
         </div>
         <ToastContainer />
       </div>
-      <div className="opacity-50 fixed inset-0 bg-black" id="container"></div>
+      <div className="opacity-50 fixed inset-0 z-[1] bg-black" id="container"></div>
     </>
   )
 }
