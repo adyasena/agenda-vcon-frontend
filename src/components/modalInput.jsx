@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
+import Moment from "moment/moment";
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Close } from "../assets";
 import { createFetcher } from "../helpers/fetcher";
 
-const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
+const ModalInput = ({ visible, onClose, setRefreshSignal, setShowToast }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const tanggalRef = useRef();
@@ -35,21 +36,10 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
       
       const res = await fetcher.post("/agenda", agenda);
       if (!res.data.success) throw new Error(res.data.error);
-      {res.data.success && toast.success("Berhasil menambah agenda!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "colored",
-        transition: Flip,
-      });}
       
       setRefreshSignal((s) => !s);
       onClose();
-
+      setShowToast("input");
     } catch (error) {
       toast.error("Data tidak lengkap", {
         position: "top-center",
@@ -62,6 +52,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
         theme: "colored",
         transition: Flip,
       });
+      console.error(error)
       
     } finally {
       setIsLoading(false);
@@ -85,7 +76,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
               <div className="flex flex-row justify-between gap-3 mx-auto items-start w-full">
                 <div className="flex flex-col justify-start gap-1 w-1/2">
                   <label className="text-sm">Tanggal</label>
-                  <input ref={tanggalRef} name="tanggal" type="date" className="p-[0.2rem] rounded-md border-black border bg-white w-full focus:outline-blue-light" />
+                  <input ref={tanggalRef} defaultValue={Moment(new Date()).format("yyyy-MM-DD")} name="tanggal" type="date" className="p-[0.2rem] rounded-md border-black border bg-white w-full focus:outline-blue-light" />
                 </div>
                 <div className="flex flex-col justify-start gap-1 w-1/2">
                   <label className="text-sm">Waktu</label>
@@ -128,7 +119,7 @@ const ModalInput = ({ visible, onClose, setRefreshSignal }) => {
                   Batal
               </button>
               <button
-                className="py-2 px-4 rounded-md hover:bg-blue-primary bg-blue-light text-white ease transition-all duration-300"
+                className={"py-2 px-4 rounded-md text-white ease transition-all duration-300 " + (isLoading ? "cursor-wait bg-grey" : "hover:bg-blue-primary bg-blue-light")}
                 type="submit"
                 disabled={isLoading}
                 onClick={addAgendaHandler}>

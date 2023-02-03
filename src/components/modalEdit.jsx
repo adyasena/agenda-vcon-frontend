@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Close } from "../assets";
 import { createFetcher } from "../helpers/fetcher";
 
-const ModalEdit = ({ visible, onClose, row, setRefreshSignal }) => {
+const ModalEdit = ({ visible, onClose, row, setRefreshSignal, setShowToast }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,19 +37,8 @@ const ModalEdit = ({ visible, onClose, row, setRefreshSignal }) => {
 
       const res = await fetcher.put("/agenda/" + row._id, agenda);
       if (!res.data.success) throw new Error(res.data.error);
-
-      toast.success("Berhasil mengubah agenda!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "colored",
-        transition: Flip,
-      });
-
+      
+      setShowToast("edit");
       setRefreshSignal((s) => !s);
       onClose();
 
@@ -131,7 +120,7 @@ const ModalEdit = ({ visible, onClose, row, setRefreshSignal }) => {
                   Batal
               </button>
               <button
-                className="py-2 px-4 rounded-md hover:bg-blue-primary bg-blue-light text-white ease transition-all duration-300"
+                className={"py-2 px-4 rounded-md text-white ease transition-all duration-300 " + (isLoading ? "cursor-wait bg-grey" : "hover:bg-blue-primary bg-blue-light")}
                 type="submit"
                 disabled={isLoading}
                 onClick={editAgendaHandler}>

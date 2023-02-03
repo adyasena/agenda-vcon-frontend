@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Moment from "moment/moment";
+import { ToastContainer, toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./loading";
 import TableAdmin from "./tableAdmin";
 import ModalEdit from "./modalEdit";
@@ -15,6 +17,7 @@ const Admin = () => {
   const [id, setId] = useState();
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showToast, setShowToast] = useState();
 
   const handleOnClose = () => {
     setShowModalEdit(false);
@@ -36,7 +39,49 @@ const Admin = () => {
       ]
     });
   };
-
+  {(() => {
+    if (showToast === "edit") {
+      toast.success("Berhasil mengubah agenda!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Flip,
+      });
+      setShowToast("")
+    } else if (showToast === "input") {
+      toast.success("Berhasil menambah agenda!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Flip,
+      });
+      setShowToast("")
+    } else if (showToast === "delete") {
+      toast.success("Berhasil menghapus agenda!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        transition: Flip,
+      });
+      setShowToast("")
+    }
+  })()}
+  
   const columns = useMemo(
     () => [
       {
@@ -122,13 +167,14 @@ const Admin = () => {
                 <Loading/>
               </div>
             ) : (
-              <TableAdmin columns={columns} data={agenda} setRefreshSignal={setRefreshSignal}/>
+              <TableAdmin columns={columns} data={agenda} setRefreshSignal={setRefreshSignal} setShowToast={setShowToast}/>
             )}
           </div>
         </div>
       </div>
-      <ModalEdit onClose={handleOnClose} visible={showModalEdit} row={id} setRefreshSignal={setRefreshSignal} />
-      <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} setRefreshSignal={setRefreshSignal} />
+      <ModalEdit onClose={handleOnClose} visible={showModalEdit} row={id} setRefreshSignal={setRefreshSignal} setShowToast={setShowToast}/>
+      <ModalDelete onClose={handleOnClose} visible={showModalDelete} row={id} setRefreshSignal={setRefreshSignal} setShowToast={setShowToast}/>
+      <ToastContainer />
     </div>
   )
 }
