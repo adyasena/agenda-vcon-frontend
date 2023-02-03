@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from "react-table";
+import Moment from "moment/moment";
 import ModalInput from "./modalInput";
 import { ChevronLeft, ChevronRight, ChevronDoubleLeft, ChevronDoubleRight } from "../assets";
 
-export default function Table({ columns, data, setRefreshSignal }) {
+export default function Table({ columns, data, setRefreshSignal, setShowToast }) {
+  let currentMonth = Moment(new Date().toLocaleDateString()).format("MM");
+  let currentYear = Moment(new Date().toLocaleDateString()).format("YYYY");
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -33,11 +37,24 @@ export default function Table({ columns, data, setRefreshSignal }) {
         }
       ],
       pageSize: 10,
+      filters: [{id: "tanggal", value: currentYear + "-" + currentMonth }],
     } }, useFilters, useGlobalFilter, useSortBy, usePagination);
-  
+
+  const [filterTahun, setFilterTahun] = useState(currentYear);
+
+  const $bulan = document.querySelector('#bulan');
+  const $tahun = document.querySelector('#tahun');
+
   const handleFilterTahun = e => {
-    const value = e.target.value;
-    setFilter("tanggal", value);
+    const tahun = e.target.value;
+    setFilter("tanggal", tahun);
+    setFilterTahun(tahun);
+    $bulan.value = ""
+  };
+
+  const handleFilterBulan = e => {
+    const bulan = e.target.value;
+    setFilter("tanggal", filterTahun + "-" + bulan);
   };
 
   const { globalFilter } = state;
@@ -47,7 +64,7 @@ export default function Table({ columns, data, setRefreshSignal }) {
   const handleOnClose = () => {
     setShowModal(false);
   };
-  
+
   return (
     <div className="text-black">
       <div className="flex flex-row font-poppins justify-between gap-2 align-center">
@@ -59,7 +76,22 @@ export default function Table({ columns, data, setRefreshSignal }) {
             value={globalFilter || ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
-          <select defaultValue={2023} onChange={handleFilterTahun} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+          <select defaultValue={currentMonth} id="bulan" onChange={handleFilterBulan} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+            <option value="">Pilih Bulan</option>
+            <option value="01">Januari</option>
+            <option value="02">Februari</option>
+            <option value="03">Maret</option>
+            <option value="04">April</option>
+            <option value="05">Mei</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">Agustus</option>
+            <option value="09">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+          </select>
+          <select defaultValue={currentYear} id="tahun" onChange={handleFilterTahun} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
             <option value="">Semua Tahun</option>
             <option value="2022">2022</option>
             <option value="2023">2023</option>
@@ -115,7 +147,7 @@ export default function Table({ columns, data, setRefreshSignal }) {
           </div>
         }
       </div>
-      <ModalInput onClose={handleOnClose} visible={showModal} setRefreshSignal={setRefreshSignal}/>
+      <ModalInput onClose={handleOnClose} visible={showModal} setRefreshSignal={setRefreshSignal} setShowToast={setShowToast}/>
       {page.length > 0 &&
         <div className="flex justify-center gap-2 pt-4 items-center">
           <div className="flex gap-1">
