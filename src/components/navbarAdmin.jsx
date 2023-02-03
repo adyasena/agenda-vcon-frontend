@@ -11,7 +11,7 @@ const NavbarAdmin = () => {
   const navigate = useNavigate();
 
   const changeClass = () => {
-    if (window.scrollY >= 90) {
+    if (window.scrollY >= 10) {
       setScroll(true)
     }
     else {

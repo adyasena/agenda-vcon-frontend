@@ -43,7 +43,6 @@ export default function Table({ columns, data, setRefreshSignal, setShowToast })
   const [filterTahun, setFilterTahun] = useState(currentYear);
 
   const $bulan = document.querySelector('#bulan');
-  const $tahun = document.querySelector('#tahun');
 
   const handleFilterTahun = e => {
     const tahun = e.target.value;

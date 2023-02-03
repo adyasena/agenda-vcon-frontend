@@ -51,24 +51,24 @@ export default function Table({ columns, data }) {
   return (
     <div className="text-black">
       <div className="flex flex-row font-poppins justify-start gap-3 align-center">
-          <input
-            type="text"
-            placeholder="Cari" 
-            className="py-1 px-2 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
-            value={globalFilter || ''}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-          />
-          <input 
-            type="date"
-            className="py-1 px-2 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
-            onChange={handleFilterTanggal}
-            defaultValue={currentDate}
-          />
-          <select defaultValue={currentDate} onChange={handleFilterTanggal} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
-            <option value={currentDate}>Hari Ini</option>
-            <option value={currentMonth}>Bulan Ini</option>
-            <option value={nextMonth}>Bulan Depan</option>
-          </select>
+        <input
+          type="text"
+          placeholder="Cari" 
+          className="py-1 px-2 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
+          value={globalFilter || ''}
+          onChange={(e) => setGlobalFilter(e.target.value)}
+        />
+        <input 
+          type="date"
+          className="py-1 px-2 w-40 rounded-md border border-black bg-white mb-3 focus:outline-blue-light"
+          onChange={handleFilterTanggal}
+          defaultValue={currentDate}
+        />
+        <select defaultValue={currentDate} onChange={handleFilterTanggal} className="px-2 w-40 rounded-md border border-black bg-white mb-3 outline-none">
+          <option value={currentDate}>Hari Ini</option>
+          <option value={currentMonth}>Bulan Ini</option>
+          <option value={nextMonth}>Bulan Depan</option>
+        </select>
       </div>
       <div className="">
         <table {...getTableProps()} className="w-full table-fixed">
