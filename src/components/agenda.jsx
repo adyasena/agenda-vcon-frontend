@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import Moment from "moment/moment";
 import TableAgenda from "./tableAgenda";
 import Loading from "./loading";
+import Footer from "./footer";
 import { useFetch } from "../helpers/useFetch";
 
 const Agenda = () => {
@@ -66,12 +67,12 @@ const Agenda = () => {
 
   return (
     <div className="bg-gradient-to-l from-blue-light to-blue-primary">
-      <div className="container mx-auto min-h-screen w-full pt-20 pb-6 lg:px-12 flex flex-col items-center">
-        <div className="bg-white py-5 px-5 rounded-xl w-full h-full">
+      <div className="container mx-auto min-h-screen w-full pt-20 pb-6 lg:px-12 flex flex-col items-center relative">
+        <div className="bg-white py-5 px-5 rounded-xl w-full h-full mb-28">
           <div className="text-black text-center text-2xl font-poppins font-semibold">
             Agenda Hari Ini
           </div>
-          <div className="container text-sm mx-auto pt-2 rounded-md items-center flex flex-col w-full font:roboto ">
+          <div className="container text-sm mx-auto pt-2 rounded-md items-center flex flex-col w-full font:roboto">
             {isLoading ? (
               <div className="w-full py-10 flex justify-center">
                 <Loading/>
@@ -81,6 +82,7 @@ const Agenda = () => {
             )}
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   )
